@@ -59,12 +59,18 @@ module Enumerables
   end
 
   def my_count
-    var = 0
+    count = 0
+    my_each do |i|
+      if i
+        count += 1
+      end
+    end
+    count
   end
 
   def my_map
     item_select = []
-    my_each { |i| item_select << i if yield(i)}
+    my_each { |i| item_select << i if yield(i) }
     item_select
   end
 
