@@ -20,12 +20,18 @@ module Enumerables
 
   def my_select
     item_select = []
-    my_each { |i| item_select << i if yield(i)}
+    my_each { |i| item_select << i if yield(i) }
     item_select
   end
 
   def my_all?
-    
+  	items = true
+    my_each do |i|
+    	if i == false || i == nil
+    		items = false
+    	end
+    end
+    items
   end
 
   def my_any?
