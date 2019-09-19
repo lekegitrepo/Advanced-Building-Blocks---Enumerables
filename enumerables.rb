@@ -11,7 +11,11 @@ module Enumerables
   end
 
   def my_each_with_index
-    var = 0
+    i = 0
+    while i < size
+      yield(self[i], i)
+      i += 1
+    end
   end
 
   def my_select
