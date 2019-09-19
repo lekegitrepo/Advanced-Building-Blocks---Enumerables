@@ -1,43 +1,48 @@
 # frozen_string_literal: true
 
 module Enumerables
-	def my_each
-		
-	end
+  def my_each
+    i = 0
+    while i < size
+      yield(self[i])
+      i += 1
+    end
+    self
+  end
 
-	def my_each_with_index
-		
-	end
+  def my_each_with_index
+    var = 0
+  end
 
-	def my_select
-		
-	end
+  def my_select
+    var = 0
+  end
 
-	def my_all?
-		
-	end
+  def my_all?
+    var = 0
+  end
 
-	def my_any?
-		
-	end
+  def my_any?
+    var = 0
+  end
 
-	def my_none?
-		
-	end
+  def my_none?
+    var = 0
+  end
 
-	def my_count
-		
-	end
+  def my_count
+    var = 0
+  end
 
-	def my_map
-		
-	end
+  def my_map
+    var = 0
+  end
 
-	def my_inject
-		
-	end
+  def my_inject
+    var = 0
+  end
 
-	def multiply_els
-		
-	end
+  def multiply_els
+    var = 0
+  end
 end
