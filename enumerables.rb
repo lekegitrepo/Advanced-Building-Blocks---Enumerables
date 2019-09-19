@@ -19,11 +19,13 @@ module Enumerables
   end
 
   def my_select
-    var = 0
+    item_select = []
+    my_each { |i| item_select << i if yield(i)}
+    item_select
   end
 
   def my_all?
-    var = 0
+    
   end
 
   def my_any?
@@ -39,7 +41,9 @@ module Enumerables
   end
 
   def my_map
-    var = 0
+    item_select = []
+    my_each { |i| item_select << i if yield(i)}
+    item_select
   end
 
   def my_inject
