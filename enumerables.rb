@@ -25,21 +25,37 @@ module Enumerables
   end
 
   def my_all?
-  	items = true
+    items = true
     my_each do |i|
-    	if i == false || i == nil
-    		items = false
-    	end
+      if i == false || i == nil
+        items = false
+      end
     end
     items
   end
 
   def my_any?
-    var = 0
+    i = 0
+    items = false
+    while i < size
+      if yield(self[i])
+        items = true
+      end
+      i += 1
+    end
+    items
   end
 
   def my_none?
-    var = 0
+    i = 0
+    items = true
+    while i < size
+      if yield(self[i])
+        items = false
+      end
+      i += 1
+    end
+    items
   end
 
   def my_count
