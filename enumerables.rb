@@ -104,8 +104,8 @@ module Enumerables
     end
     value
   end
+end
 
-  def multiply_els
-    var = 0
-  end
+def multiply_els(arr)
+  arr.my_inject { |a, b| a * b}
 end
