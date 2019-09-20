@@ -105,23 +105,23 @@ def multiply_els(arr)
   arr.my_inject { |a, b| a * b }
 end
 
-#Implementation Tests for the methods
-arr = [1, 2, 3, 4, 5]
+# Implementation Tests for the methods
+# arr = [1, 2, 3, 4, 5]
 
-arr.my_each { |x| puts x * 2 }
+# arr.my_each { |x| puts x * 2 }
 
-arr.my_each_with_index {| i,j | puts i.to_s + " " + j.to_s }
+# arr.my_each_with_index {| i,j | puts i.to_s + " " + j.to_s }
 
-arr.my_select { |i| puts i % 2 == 0 }
+# arr.my_select { |i| puts i % 2 == 0 }
 
-arr.my_all? { |i| puts i > 2 } # => false
+# arr.my_all? { |i| puts i > 2 } # => false
 
-arr.my_any? { |i| puts i < 0 } # => false
+# arr.my_any? { |i| puts i < 0 } # => false
 
-puts arr.my_none?{|a| a.nil? } # => true
+# puts arr.my_none?{|a| a.nil? } # => true
 
-puts arr.my_count # => 5
+# puts arr.my_count # => 5
 
-puts arr.my_map { |i| i * 2} # => [2, 4, 6, 8, 10]
+# puts arr.my_map { |i| i * 2} # => [2, 4, 6, 8, 10]
 
-puts multiply_els([2,4,5])
+# puts multiply_els([2,4,5])
