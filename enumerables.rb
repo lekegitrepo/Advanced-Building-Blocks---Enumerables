@@ -61,8 +61,10 @@ module Enumerables
   def my_count
     count = 0
     my_each do |i|
-      if i
+      if block_given? && yield(i)
         count += 1
+      else
+        self.size
       end
     end
     count
@@ -94,8 +96,13 @@ module Enumerables
     items
   end
 
-  def my_inject
-    var = 0
+  def my_inject(init = self[0])
+    value = init
+    my_each do |i|
+      next if init == i
+      value = yield(value, i)
+    end
+    value
   end
 
   def multiply_els
