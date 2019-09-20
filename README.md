@@ -1,6 +1,4 @@
-# Advanced-Building-Blocks---Enumerables
-
-# Enumerable Methods
+# Advanced-Building-Blocks---Enumerable
 
 Implementation of the following enumerable methods present in Ruby:
 
