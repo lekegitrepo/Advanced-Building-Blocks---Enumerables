@@ -80,7 +80,7 @@ module Enumerable
     if block_given?
       my_each { |i| count += 1 if yield(i) == true }
     elsif items.nil?
-      my_each { |_i| count += 1 }
+      my_each { count += 1 }
     else
       my_each { |i| count if i == items }
     end
@@ -96,7 +96,7 @@ module Enumerable
                arg.call(i)
              else
                yield(i)
-      end
+             end
     end
     arr
   end
