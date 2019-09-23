@@ -80,7 +80,7 @@ module Enumerable
     if block_given?
       my_each { |i| count += 1 if yield(i) == true }
     elsif items.nil?
-      my_each { |i| count += 1 }
+      my_each { |_i| count += 1 }
     else
       my_each { |i| count if i == items }
     end
@@ -88,26 +88,41 @@ module Enumerable
   end
 
   def my_map(arg = nil)
-    return (:my_map) unless block_given?
+    return :my_map unless block_given?
+
     arr = []
-    my_each do |i| 
+    my_each do |i|
       arr << if !arg.nil?
-        arg.call(i)
-      else
-        yield(i)
+               arg.call(i)
+             else
+               yield(i)
       end
     end
     arr
   end
 
-  def my_inject(init = self[0])
-    value = init
-    my_each do |i|
-      next if init == i
-
-      value = yield(value, i)
+  def my_inject(*args)
+    arr = to_a.dup
+    if args[0].nil?
+      operand = arr.shift
+    elsif args[1].nil? && !block_given?
+      symbol = args[0]
+      operand = arr.shift
+    elsif args[1].nil? && block_given?
+      operand = args[0]
+    else
+      symbol = args[0]
+      operand = args[1]
     end
-    value
+
+    arr[0..-1].my_each do |i|
+      operand = if symbol
+                  operand.send(symbol. i)
+                else
+                  yield(operand, i)
+                end
+    end
+    operand
   end
 end
 
@@ -134,4 +149,4 @@ end
 
 # puts arr.my_map { |i| i * 2} # => [2, 4, 6, 8, 10]
 
-# puts multiply_els([2,4,5])
+# puts multiply_els([2, 4, 5])
