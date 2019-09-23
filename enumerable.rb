@@ -75,42 +75,29 @@ module Enumerable
     true
   end
 
-  def my_count
+  def my_count(items = nil)
     count = 0
-    my_each do |i|
-      if block_given? && yield(i)
-        count += 1
-      else
-        size
-      end
+    if block_given?
+      my_each { |i| count += 1 if yield(i) == true }
+    elsif items.nil?
+      my_each { |i| count += 1 }
+    else
+      my_each { |i| count if i == items }
     end
     count
   end
 
-  def my_map
-    items = []
-    my_each { |i| items << i if yield(i) }
-    items
-  end
-
-  def my_map_proc(&proc_block)
-    items = []
-    my_each { |i| items << proc_block.call(i) }
-    items
-  end
-
-  def my_map_block(param = nil)
-    i = 0
-    items = []
-    while i < size
-      if param.nil? && block_given?
-        items << yield(self[i])
-      elsif !param.nil && block_given?
-        items << param.call(self[i])
+  def my_map(arg = nil)
+    return (:my_map) unless block_given?
+    arr = []
+    my_each do |i| 
+      arr << if !arg.nil?
+        arg.call(i)
+      else
+        yield(i)
       end
-      i += 1
     end
-    items
+    arr
   end
 
   def my_inject(init = self[0])
