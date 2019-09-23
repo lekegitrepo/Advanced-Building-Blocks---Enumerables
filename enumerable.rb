@@ -30,32 +30,49 @@ module Enumerable
     item_select
   end
 
-  def my_all?
-    items = true
-    my_each do |i|
-      items = false if i == false || i.nil?
+  def my_all?(param = nil)
+    if block_given?
+      my_each { |i| return false unless yield(i) }
+    elsif param.class == Class
+      my_each { |i| return false unless i.class == param }
+    elsif param.class == Regexp
+      my_each { |i| return false unless i =~ param }
+    elsif param.nil?
+      my_each { |i| return false unless i }
+    else
+      my_each { |i| return false unless i == param }
     end
-    items
+    true
   end
 
-  def my_any?
-    i = 0
-    items = false
-    while i < size
-      items = true if yield(self[i])
-      i += 1
+  def my_any?(param = nil)
+    if block_given?
+      my_each { |i| return true if yield(i) }
+    elsif param.class == Class
+      my_each { |i| return true if i.class == param }
+    elsif param.class == Regexp
+      my_each { |i| return true if i =~ param }
+    elsif param.nil?
+      my_each { |i| return true if i }
+    else
+      my_each { |i| return true if i == param }
     end
-    items
+    false
   end
 
-  def my_none?
-    i = 0
-    items = true
-    while i < size
-      items = false if yield(self[i])
-      i += 1
+  def my_none?(param = nil)
+    if block_given?
+      my_each { |i| return false if yield(i) }
+    elsif param.class == Class
+      my_each { |i| return false if i.class == param }
+    elsif param.class == Regexp
+      my_each { |i| return false if i =~ param }
+    elsif param.nil?
+      my_each { |i| return false if i }
+    else
+      my_each { |i| return false if i == param }
     end
-    items
+    true
   end
 
   def my_count
