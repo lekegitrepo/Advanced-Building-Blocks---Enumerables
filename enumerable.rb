@@ -129,9 +129,3 @@ end
 def multiply_els(arr)
   arr.my_inject { |a, b| a * b }
 end
-
-new_arr_each = []
-
-[4, 5, 8, 2, 1, 9, 3, 7, 6].my_each { |i| new_arr_each << i**2 if i < 5 }
-
-p new_arr_each
