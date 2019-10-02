@@ -117,7 +117,7 @@ module Enumerable
 
     arr[0..-1].my_each do |i|
       operand = if symbol
-                  operand.send(symbol. i)
+                  operand.send(symbol, i)
                 else
                   yield(operand, i)
                 end
